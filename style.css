@@ -4,6 +4,24 @@ body {
     align-items: center;
     flex-direction: column;
     margin: 0;
+    background-image: url("./img/background_desert.jpg");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+}
+
+@font-face {
+    font-family: 'zabras';
+    src: url('./fonts/Zabars.ttf') format('truetype'); 
+} 
+
+h1 {
+    font-size: 64px;
+    font-family: 'zabras', Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    color: #FFDB04;
+    letter-spacing: 4px;
+    text-shadow: 4px 4px 8px rgba(0,0,0,0.5);
 }
 
 canvas {
@@ -14,6 +32,13 @@ canvas {
 @media only screen and (max-width: 720px) {
     canvas {
         width: 100%;
+    }
+}
+
+@media only screen and (max-height : 590px){
+   
+    h1 {
+        display: none;
     }
 }
 
