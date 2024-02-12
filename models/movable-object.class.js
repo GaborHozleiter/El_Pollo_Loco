@@ -49,6 +49,13 @@ class MovebleObject {
         return this.energy == 0; 
     }
 
+    isHurt(){
+        let timepassed = new Date().getTime() - this.lastHit;
+        timepassed = timepassed / 1000;
+        return timepassed < 1;
+    }
+
+
     draw(ctx){
         ctx.drawImage(this.img, this.x, this.y , this.width, this.height);
        
