@@ -9,6 +9,7 @@ class MovebleObject {
     speed = 0.2;
     speedY = 0;
     acceleration = 2.5;
+    lastHit = 0; 
     otherDirection = false;
     
 
@@ -33,7 +34,20 @@ class MovebleObject {
                 (this.y + /*this.offsetY +*/ this.height) >= mo.y &&
                 this.y /*+ this.offsetY)*/ <= (mo.y + mo.height);
 
-}
+    }
+
+    hit(){
+        this.energy -= 5;
+        if(this.energy < 0){
+            this.energy = 0;
+        }else{
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+    isDead(){
+        return this.energy == 0; 
+    }
 
     draw(ctx){
         ctx.drawImage(this.img, this.x, this.y , this.width, this.height);
