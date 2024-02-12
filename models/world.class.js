@@ -41,7 +41,8 @@ camera_x = 0;
         setInterval(() => {
             this.level.enemies.forEach( (enemy) => {
                 if(this.character.isColliding(enemy)){
-                  console.log('Collosion with Character', enemy);
+                    this.character.energy -= 5;
+                  console.log('Collosion with Character', this.character.energy);
                 }
             })
         }, 100);
