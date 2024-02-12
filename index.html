@@ -21,11 +21,14 @@
     <script src="./levels/level1.js"></script>
     <script src="./js/game.js"></script>
 </head>
-<body onload="init()">
+<body>
     <h1>El Pollo Loco</h1>
     <div id="fullscreen">
         <canvas id="canvas" width="720" height="480">
         </canvas>
+    </div>
+    <div id="startscreen">
+        <span onclick="startGame()" id="startButton">Start</span>
     </div>
 </body>
 </html>
