@@ -3,6 +3,7 @@ class Character extends MovebleObject{
     width = 75;
     height = 300;
     y = 170;
+    speed = 10;
     world;
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
@@ -20,12 +21,25 @@ class Character extends MovebleObject{
     }
 
     animate(){
+    setInterval(() => {
+        if(this.world.keyboard.RIGHT){
+            this.x += this.speed;
+        }
+
+        if(this.world.keyboard.LEFT){
+            this.x -= this.speed;
+        }
+    }, 1000/60);
+
         setInterval(() => {
-            let i = this.currentImage % this.IMAGES_WALKING.length;
-            let path = this.IMAGES_WALKING[i];
-            this.img = this.imageCache[path];
-            this.currentImage++;
-        }, 100);
+            if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT){
+                let i = this.currentImage % this.IMAGES_WALKING.length;
+                let path = this.IMAGES_WALKING[i];
+                this.img = this.imageCache[path];
+                this.currentImage++;
+            }
+            
+        }, 50);
         
     }
 
