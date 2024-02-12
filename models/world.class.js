@@ -1,5 +1,6 @@
 class World {
 character = new Character();
+StatusBarHealth = new StatusBarHealth();
 level = level1;
 ctx;
 canvas;
@@ -25,6 +26,9 @@ camera_x = 0;
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addToMap(this.character);
+        this.ctx.translate(-this.camera_x, 0);
+        this.addToMap(this.StatusBarHealth);
+        this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.clouds);
         this.ctx.translate(-this.camera_x, 0);
@@ -42,7 +46,7 @@ camera_x = 0;
             this.level.enemies.forEach( (enemy) => {
                 if(this.character.isColliding(enemy)){
                     this.character.hit();
-                    console.log('Collosion with Character', this.character.energy);
+                    this.StatusBarHealth.setPercentage(this.character.energy);
                 }
             })
         }, 100);
