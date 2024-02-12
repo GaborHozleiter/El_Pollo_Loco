@@ -28,6 +28,13 @@ class MovebleObject {
         
     }
 
+    isColliding (mo) {
+        return  (this.x + this.width) >= mo.x && this.x <= (mo.x + mo.width) && 
+                (this.y + /*this.offsetY +*/ this.height) >= mo.y &&
+                this.y /*+ this.offsetY)*/ <= (mo.y + mo.height);
+
+}
+
     draw(ctx){
         ctx.drawImage(this.img, this.x, this.y , this.width, this.height);
        

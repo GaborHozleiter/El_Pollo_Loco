@@ -12,6 +12,7 @@ camera_x = 0;
         this.keyboard = keyboard;
         this.setWorld();
         this.draw();
+        this.checkcollisions();
     }
 
     setWorld(){
@@ -34,6 +35,17 @@ camera_x = 0;
         requestAnimationFrame(function(){
             self.draw();
         });
+    }
+
+    checkcollisions(){
+        setInterval(() => {
+            this.level.enemies.forEach( (enemy) => {
+                if(this.character.isColliding(enemy)){
+                  console.log('Collosion with Character', enemy);
+                }
+            })
+        }, 100);
+       
     }
 
     addObjectsToMap(objects){
