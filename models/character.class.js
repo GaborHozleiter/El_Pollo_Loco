@@ -6,6 +6,12 @@ class Character extends MovebleObject{
     speed = 10;
     energy = 100;
     world;
+    offset = {
+        top : 120,
+        left : 20,
+        bottom : 30,
+        right : 20
+    }
     walking_sound = new Audio('./audio/walk.mp3');
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
