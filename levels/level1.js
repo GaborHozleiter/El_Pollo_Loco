@@ -48,6 +48,13 @@ function initLevel(){
             new SalsaBottle(),
             new SalsaBottle()
         ],
+        [
+            new Coin(),
+            new Coin(),
+            new Coin(),
+            new Coin(),
+            new Coin()
+        ]
     );
 }
 

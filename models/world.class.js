@@ -1,6 +1,10 @@
 class World {
 character = new Character();
 StatusBarHealth = new StatusBarHealth();
+StatusBarCoins = new StatusBarCoins();
+StatusBarBottles = new StatusBarBottles();
+numberOfCoins = 1;
+numberOfBottles = 0;
 level = level1;
 ctx;
 canvas;
@@ -22,11 +26,14 @@ throwableObjects = [];
         setInterval(() => {
            this.checkcollisions();
            this.checkTrowObjects();
+           this.addCoinsToStatusbar();
+           this.addBottlesToStatusbar();
+           this.checkThrowObjects();
         }, 200);
     }
 
     checkTrowObjects(){
-        if(this.keyboard.D){
+        if(this.keyboard.D  && this.numberOfBottles > 0){
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100) ;
             this.throwableObjects.push(bottle);
         }
@@ -44,10 +51,13 @@ throwableObjects = [];
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.StatusBarHealth);
+        this.addToMap(this.StatusBarBottles);
+        this.addToMap(this.StatusBarCoins);
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.salsaBottles);
+        this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.clouds);
         this.ctx.translate(-this.camera_x, 0);
        
@@ -68,7 +78,41 @@ throwableObjects = [];
                 }
             })
         }, 100);
-       
+    }
+
+    checkThrowObjects(){
+        if(this.keyboard.D && this.numberOfBottles > 0){
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100) ;
+            this.throwableObjects.push(bottle);
+            this.numberOfBottles--;
+        }
+    }
+
+    addCoinsToStatusbar(){
+        this.level.coins.forEach( (coin) => {
+            if(this.character.isColliding(coin)){
+               
+                this.StatusBarCoins.setNumberOfCoins(this.numberOfCoins);
+                coin.y = -200;
+                this.numberOfCoins++;
+               
+            }
+        })
+    }
+
+    addBottlesToStatusbar(){
+        this.level.salsaBottles.forEach( (salsaBottle) => {
+            if(this.character.isColliding(salsaBottle)){
+                this.numberOfBottles++;
+                setInterval(() => {
+                    this.StatusBarBottles.setNumberOfBottles(this.numberOfBottles);
+                }, 200);
+                
+                salsaBottle.y = -200;
+                
+               
+            }
+        })
     }
 
     addObjectsToMap(objects){
