@@ -29,6 +29,11 @@ canvas {
     display: none;
 }
 
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
 #startscreen {
     display: flex;
     justify-content: center;
